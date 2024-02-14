@@ -16,31 +16,31 @@
     > 
 3. 시맨틸 분할 (PSPNet) 
     
-    > 24.02.15 -
+    > 24.02.15 ... In-progress
     > 
 4. 자세 추정 (OpenPose)
     
-    > 24
+    > To-do
     > 
 5. GAN을 활용한 화상 생성 (DCGAN, Self-Attention GAN)
     
-    > 24
+    > To-do
     > 
 6. GAN을 활용한 이상 감지 (AnoGAN, Efficient GAN)
     
-    > 24
+    > To-do
     > 
 7. 자연어 처리를 활용한 감정 분석 (Transformer)
     
-    > 24
+    > To-do
     > 
 8. 자연어 처리를 활용한 감정 분석 (BERT)
     
-    > 24
+    > To-do
     > 
 9. 동영상 분류 (3DCNN, ECO)
     
-    > 24
+    > To-do
     >
 ## 🌈 Original Source
 ©️ https://github.com/YutaroOgawa/pytorch_advanced
