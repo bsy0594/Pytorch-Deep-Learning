@@ -45,7 +45,7 @@
 ## 🌈 Original Source
 ©️ https://github.com/YutaroOgawa/pytorch_advanced
 
-## Modification
+## 🛠️ Modification
 ✅ 2-2-3_Dataset_DataLoader
   * 에러 메세지
     * ValueError: setting an array element with a sequence.  
