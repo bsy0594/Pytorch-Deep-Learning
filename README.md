@@ -24,7 +24,7 @@
 https://github.com/YutaroOgawa/pytorch_advanced
 
 ## Modification
-* 2-2-3_Dataset_DataLoader, 2-7_SSD_training
+* 2-2-3_Dataset_DataLoader
   * utils\data_augementation.py:246
     "mode = random.choice(self.sample_options)"
   * ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (6, ) + inhomogeneous part.
