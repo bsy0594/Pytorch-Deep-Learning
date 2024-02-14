@@ -33,7 +33,7 @@ https://github.com/YutaroOgawa/pytorch_advanced
   * 변경 적용)    
     ```python
     class RandomSampleCrop(object):
-    	def **init**(self):
+    	def __init__(self):
     		self.sample_options = np.array([
     			None,
     			(0.1, None),
