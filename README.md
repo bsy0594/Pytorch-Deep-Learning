@@ -47,11 +47,11 @@
 
 ## Modification
 ✅ 2-2-3_Dataset_DataLoader
+  * 에러 메세지
+    * ValueError: setting an array element with a sequence.  
   * 오류 발생 위치
     * utils\data_augementation.py:246
     * "mode = random.choice(self.sample_options)"
-  * 에러 메세지
-    * ValueError: setting an array element with a sequence.  
   * 원인
     * ndarray의 구간별 길이가 일정하지 않기 때문이다.
   * 해결방법
@@ -71,11 +71,11 @@
     ```
   
 ✅ 2-8_SSD_inference
+  * 에러 메세지
+    * RuntimeError: Legacy autograd function with non-static forward method is deprecated. Please use new-style autograd function with static forward method.
   * 오류 발생 위치
     * utils\ssd_model.py:809
     * "return self.detect(output([0], output[1], output[2])"
-  * 에러 메세지
-    * RuntimeError: Legacy autograd function with non-static forward method is deprecated. Please use new-style autograd function with static forward method.
   * 원인
     * Pytorch 버전 업그레이드로 autograd function(forward function)을 수정해야 한다.
   * 해결방법
