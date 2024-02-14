@@ -72,18 +72,18 @@ class Detect(Function):
                 	decoded_boxes = decode(loc_data[i], dbox_list)
                 	conf_scores = conf_preds[i].clone()
 
-		for cl in range(1, num_classes):
-			c_mask = conf_scores[cl].gt(ctx.conf_thresh)
-			scores = conf_scores[cl][c_mask]
-		if scores.nelement() == 0:  # nelementで要素数の合計を求める
-			continue
+			for cl in range(1, num_classes):
+				c_mask = conf_scores[cl].gt(ctx.conf_thresh)
+				scores = conf_scores[cl][c_mask]
+			if scores.nelement() == 0:  # nelementで要素数の合計を求める
+				continue
 
-		l_mask = c_mask.unsqueeze(1).expand_as(decoded_boxes)
-		boxes = decoded_boxes[l_mask].view(-1, 4)
-		ids, count = nm_suppression(
-		boxes, scores, ctx.nms_thresh, ctx.top_k)
+			l_mask = c_mask.unsqueeze(1).expand_as(decoded_boxes)
+			boxes = decoded_boxes[l_mask].view(-1, 4)
+			ids, count = nm_suppression(
+			boxes, scores, ctx.nms_thresh, ctx.top_k)
 
-		output[i, cl, :count] = torch.cat((scores[ids[:count]].unsqueeze(1),
+			output[i, cl, :count] = torch.cat((scores[ids[:count]].unsqueeze(1),
                                                boxes[ids[:count]]), 1)
 	return output
 ```
