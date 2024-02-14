@@ -49,7 +49,7 @@ https://github.com/YutaroOgawa/pytorch_advanced
     "return self.detect(output([0], output[1], output[2])"
   * RuntimeError: Legacy autograd function with non-static forward method is deprecated. Please use new-style autograd function with static forward method.
   * 원인) Pytorch 버전 업그레이드로 autograd function(forward function)을 수정해야 한다.
-  * 해결방법) Detect 클래스의 init 메소드 삭제 후 forward 메소드를 staticmethod로 변경 후 forward의 self를 모두 ctx로 변경한다. SSD 클래스의 init 메소드를 수정한다.
+  * 해결방법) Detect 클래스의 init 메소드 삭제 후 forward 메소드를 staticmethod로 변경 후 self를 모두 ctx로 변경한다. SSD 클래스의 init 메소드를 수정한다.
   * 변경 적용)    
     ```python
     class Detect(Function):
@@ -92,7 +92,5 @@ https://github.com/YutaroOgawa/pytorch_advanced
     def __init__(self, phase, cfg):
         # 앞의 내용 생략
         if phase == 'inference':
-            self.detect = Detect.apply
-    def forward(self, x):
-        # forward 메서드는 수정 사항 없음
+            self.detect = Detect.apply # 원래는 Detect()
     ```
