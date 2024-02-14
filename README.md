@@ -24,6 +24,10 @@
 https://github.com/YutaroOgawa/pytorch_advanced
 
 ## Modification
+<aside>
+💡 2장
+
+</aside>
 * 2-2-3_Dataset_DataLoader
   * utils\data_augementation.py:246
     "mode = random.choice(self.sample_options)"
