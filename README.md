@@ -54,7 +54,7 @@ https://github.com/YutaroOgawa/pytorch_advanced
     ```python
     class Detect(Function):
     @staticmethod
-    def forward(ctx, loc_data, conf_data, dbox_list):
+    	def forward(ctx, loc_data, conf_data, dbox_list):
         ctx.softmax = nn.Softmax(dim=-1)
         ctx.conf_thresh = 0.01
         ctx.top_k = 200
@@ -89,7 +89,7 @@ https://github.com/YutaroOgawa/pytorch_advanced
     ```
     ```python
     class SSD(nn.Module):
-    def __init__(self, phase, cfg):
+    	def __init__(self, phase, cfg):
         # 앞의 내용 생략
         if phase == 'inference':
             self.detect = Detect.apply # 원래는 Detect()
