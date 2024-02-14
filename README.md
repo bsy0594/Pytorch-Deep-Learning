@@ -53,39 +53,39 @@ https://github.com/YutaroOgawa/pytorch_advanced
   * 변경 적용)    
     ```python
     class Detect(Function):
-    @staticmethod
-    	def forward(ctx, loc_data, conf_data, dbox_list):
-        ctx.softmax = nn.Softmax(dim=-1)
-        ctx.conf_thresh = 0.01
-        ctx.top_k = 200
-        ctx.nms_thresh = 0.45
-        
-        num_batch = loc_data.size(0)
-        num_dbox = loc_data.size(1) 
-        num_classes = conf_data.size(2)  
+	@staticmethod
+	def forward(ctx, loc_data, conf_data, dbox_list):
+		ctx.softmax = nn.Softmax(dim=-1)
+		ctx.conf_thresh = 0.01
+		ctx.top_k = 200
+		ctx.nms_thresh = 0.45		
 
-        conf_data = ctx.softmax(conf_data)
-        output = torch.zeros(num_batch, num_classes, ctx.top_k, 5)
-        conf_preds = conf_data.transpose(2, 1)
+		num_batch = loc_data.size(0)
+		num_dbox = loc_data.size(1)
+    num_classes = conf_data.size(2)
 
-        for i in range(num_batch):
-            decoded_boxes = decode(loc_data[i], dbox_list)
-            conf_scores = conf_preds[i].clone()
+    conf_data = ctx.softmax(conf_data)
+    output = torch.zeros(num_batch, num_classes, ctx.top_k, 5)
+    conf_preds = conf_data.transpose(2, 1)
 
-            for cl in range(1, num_classes):
-                c_mask = conf_scores[cl].gt(ctx.conf_thresh)
-                scores = conf_scores[cl][c_mask]
-                if scores.nelement() == 0:  # nelementで要素数の合計を求める
-                    continue
-    
-                l_mask = c_mask.unsqueeze(1).expand_as(decoded_boxes)
-                boxes = decoded_boxes[l_mask].view(-1, 4)
-                ids, count = nm_suppression(
-                    boxes, scores, ctx.nms_thresh, ctx.top_k)
-    
-                output[i, cl, :count] = torch.cat((scores[ids[:count]].unsqueeze(1),
-                                                   boxes[ids[:count]]), 1)
-        return output  
+    for i in range(num_batch):
+        decoded_boxes = decode(loc_data[i], dbox_list)
+        conf_scores = conf_preds[i].clone()
+
+        for cl in range(1, num_classes):
+            c_mask = conf_scores[cl].gt(ctx.conf_thresh)
+            scores = conf_scores[cl][c_mask]
+            if scores.nelement() == 0:  # nelementで要素数の合計を求める
+                continue
+
+            l_mask = c_mask.unsqueeze(1).expand_as(decoded_boxes)
+            boxes = decoded_boxes[l_mask].view(-1, 4)
+            ids, count = nm_suppression(
+                boxes, scores, ctx.nms_thresh, ctx.top_k)
+
+            output[i, cl, :count] = torch.cat((scores[ids[:count]].unsqueeze(1),
+                                               boxes[ids[:count]]), 1)
+    return output
     ```
     ```python
     class SSD(nn.Module):
