@@ -30,15 +30,17 @@ https://github.com/YutaroOgawa/pytorch_advanced
   * ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (6, ) + inhomogeneous part.
   * 원인) ndarray의 구간별 길이가 일정하지 않기 때문이다.
   * 해결방법) sample_options가 Numpy배열이 아니기 때문에 Numpy배열로 바꿔주고, dype = object를 추가해준다.
-  * 변경 적용)
+  * 변경 적용)    
+    ```python
     class RandomSampleCrop(object):
-      def __init__(self):
-        self.sample_options = np.array([
-            None,
-            (0.1, None),
-            (0.3, None),
-            (0.7, None),
-            (0.9, None),
-            (None, None),
-        ], dtype=object)
+    	def **init**(self):
+    		self.sample_options = np.array([
+    			None,
+    			(0.1, None),
+    			(0.3, None),
+    			(0.7, None),
+    			(0.9, None),
+    			(None, None),
+    		], dtype=object)
+    ```
   
