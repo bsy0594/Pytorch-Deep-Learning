@@ -65,7 +65,7 @@ class Detect(Function):
 ```python
 class SSD(nn.Module):
 	def __init__(self, phase, cfg):
-    # 앞의 내용 생략
+	# 앞의 내용 생략
 	if phase == 'inference':
 		self.detect = Detect.apply # 원래는 Detect()
 ```
