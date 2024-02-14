@@ -20,6 +20,9 @@
 
 9. 동영상 분류 (3DCNN, ECO)
 
+## Original Source
+https://github.com/YutaroOgawa/pytorch_advanced
+
 ## Modification
 * 2-7_SSD_training
   
